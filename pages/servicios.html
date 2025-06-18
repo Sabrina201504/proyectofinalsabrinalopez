@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Servicios - Sabrina López</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+   <div class="logo">
+      Sabrina López<span class="dominio">.com.ar</span>
+    </div>
+      <nav>
+
+      <ul>
+         <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="propiedades.html">Propiedades</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+
+
+
+  </header>
+
+  <main>
+    <section class="intro-servicios">
+      <h2>Nuestros Servicios</h2>
+      <p>Brindamos atención personalizada en cada etapa del proceso inmobiliario. Nuestro objetivo es lograr operaciones exitosas y transparentes.</p>
+    </section>
+
+    <section class="lista-servicios">
+      <div class="servicio">
+        <img src="../images/equipo.jpg" alt="Asesoramiento">
+        <h3>Asesoramiento personalizado</h3>
+        <p>Te acompañamos en cada paso para que tomes decisiones seguras.</p>
+      </div>
+
+      <div class="servicio">
+        <img src="../images/tasaciones.jpg" alt="tasación">
+        <h3>Tasaciones profesionales</h3>
+        <p>Valoramos tu propiedad de forma objetiva y actualizada.</p>
+      </div>
+
+      <div class="servicio">
+        <img src="../images/inversiones.jpg" alt="Gestión">
+        <h3>Gestión integral</h3>
+        <p>Nos encargamos de toda la documentación y trámites legales.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>

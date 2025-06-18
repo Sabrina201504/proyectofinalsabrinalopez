@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Propiedades - Sabrina López</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      Sabrina López<span class="dominio">.com.ar</span>
+    </div>
+      <nav>
+
+    <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="propiedades.html">Propiedades</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="propiedades-page">
+      
+      <aside class="filtros">
+        <h3>Filtrar</h3>
+      
+        <label for="tipo">Tipo de propiedad:</label>
+        <select id="tipo" name="tipo">
+          <option value="">Todos</option>
+          <option value="casa">Casa</option>
+          <option value="departamento">Departamento</option>
+          <option value="lote">Lote</option>
+        </select>
+
+         <label for="ambientes">Ambientes:</label>
+         <select id="ambientes"name="ambientes">
+          <option value="">Todos</option>
+          <option value="1">1 ambiente</option>
+          <option value="2">2 ambientes</option>
+          <option value="3">3 ambientes</option>
+          <option value="4">4 ambientes</option>
+        </select>
+
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="ubicacion" placeholder="Ej: Mar del Plata">
+
+        <label for="precio">Rango de precio:</label>
+        <input type="text" id="precio" placeholder="Ej: 100000 - 200000">
+
+        <button class="btn-filtro">Aplicar filtros</button>
+      </aside>
+
+      <section class="listado-propiedades">
+        <div class="tarjeta" data-tipo="departamento" data-ambientes="2">
+          <img src="../images/departamento1.jpg" alt="Departamento">
+          <div class="info">
+            <h3>Departamento 2 Ambientes</h3>
+            <p>Zona Centro</p>
+            <strong>USD 65.000</strong>
+          </div>
+        </div>
+
+        <div class="tarjeta" data-tipo="casa" data-ambientes="4">
+          <img src="../images/casa1.jpg" alt="Casa">
+          <div class="info">
+            <h3>Casa 4 Ambientes</h3>
+            <p>Constitución - Patio y Cochera</p>
+            <strong>USD 120.000</strong>
+          </div>
+        </div>
+
+         <div class="tarjeta" data-tipo="lote" data-ambientes="1">
+          <img src="../images/lote.jpg" alt="lote">
+          <div class="info">
+            <h3>Lote 600 metros cuadrados</h3>
+            <p>Lote en venta - Recoleta para inversión</p>
+            <strong>USD 350.000</strong>
+          </div>
+
+        <div class="tarjeta" data-tipo="local" data-ambientes="1">
+          <img src="../images/local1.jpg" alt="Local">
+          <div class="info">
+            <h3>Local en Alquiler</h3>
+            <p>Av. Independencia - 60 m²</p>
+            <strong>$ 300.000</strong>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+   <script>
+  document.querySelector(".btn-filtro").addEventListener("click", function () {
+    const tipo = document.getElementById("tipo").value.toLowerCase();
+    const ambientes = document.getElementById("ambientes").value;
+    const ubicacion = document.getElementById("ubicacion").value.toLowerCase();
+    const precioInput = document.getElementById("precio").value;
+
+    let precioMin = 0;
+    let precioMax = Infinity;
+
+    if (precioInput.includes("-")) {
+      const partes = precioInput.split("-");
+      precioMin = parseInt(partes[0].trim()) || 0;
+      precioMax = parseInt(partes[1].trim()) || Infinity;
+    }
+
+    const tarjetas = document.querySelectorAll(".tarjeta");
+
+    tarjetas.forEach((tarjeta) => {
+      const tipoProp = tarjeta.getAttribute("data-tipo").toLowerCase();
+      const ambProp = tarjeta.getAttribute("data-ambientes");
+      const ubiProp = tarjeta.getAttribute("data-ubicacion").toLowerCase();
+      const precioProp = parseInt(tarjeta.getAttribute("data-precio"));
+
+      const coincideTipo = tipo === "" || tipo === tipoProp;
+      const coincideAmb = ambientes === "" || ambientes === ambProp || (ambientes === "4" && parseInt(ambProp) >= 4);
+      const coincideUbi = ubicacion === "" || ubiProp.includes(ubicacion);
+      const coincidePrecio = precioProp >= precioMin && precioProp <= precioMax;
+
+      if (coincideTipo && coincideAmb && coincideUbi && coincidePrecio) {
+        tarjeta.style.display = "block";
+      } else {
+        tarjeta.style.display = "none";
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>
